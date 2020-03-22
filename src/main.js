@@ -1,8 +1,38 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import App from './App.vue';
+import { routes } from './routers';
+import { store } from './store/store';
+
+Vue.use(VueRouter);
+
 
 Vue.config.productionTip = false
 
+
+
+export const router = new VueRouter({
+    mode: 'history',
+    routes
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((record) => { return record.meta.requiresAuth; })) {
+        if (localStorage.Token == null) {
+            next({
+                path: '/login'
+            });
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+});
+
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+    components: { App },
+    render: (h) => { return h(App); },
+    router,
+    store
+}).$mount('#app');
