@@ -46,6 +46,8 @@ export default {
         justify-content: center;
         align-items: center;
         font-size: 19px;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
     }
     .internItem span{
         color: white;
