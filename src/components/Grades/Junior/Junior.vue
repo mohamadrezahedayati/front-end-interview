@@ -1,10 +1,10 @@
 <template>
-    <div class="intern d-flex justify-content-center align-items-center flex-column">
+    <div class="junior d-flex justify-content-center align-items-center flex-column">
         <h2>
         </h2>
         <ul class="m-0 p-0 list-unstyled d-flex">
-            <li v-for="skill in skills" :key="skill" class="internItem text-center" @click="setSelectedSkill(skill)" :class="selectSkill == skill ? 'active' : ''">
-                <router-link :to="{name: 'intern-'+skill}">
+            <li v-for="skill in skills" :key="skill" class="juniorItem text-center" @click="setSelectedSkill(skill)" :class="selectSkill == skill ? 'active' : ''">
+                <router-link :to="{name: 'junior-'+skill}">
                     <span>{{skill}}</span>
                 </router-link>
             </li>
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang="css">
-    .internItem{
+    .juniorItem{
         background: #7045af;
         padding: 10px;
         width: 100px;
@@ -51,7 +51,7 @@ export default {
         border-top-right-radius: 0;
         border-bottom-left-radius: 0;
     }
-    .internItem span{
+    .juniorItem span{
         color: white;
     }
     .active{

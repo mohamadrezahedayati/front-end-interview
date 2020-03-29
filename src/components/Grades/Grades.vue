@@ -3,39 +3,30 @@
         <div>
             <h2>Front-end Interview</h2>
         </div>
-        <ul class="m-0 p-0 list-unstyled">
-            <li class="grade text-center">
-                <router-link :to="{name: 'Intern'}">
-                    <span>Intern</span>
-                </router-link>
-            </li>
-            <li class="grade text-center">
-                <router-link :to="{name: 'Junior'}">
-                    <span>Junior</span>
-                </router-link>
-            </li>
-            <li class="grade text-center">
-                <router-link :to="{name: 'Middle'}">
-                    <span>Middle</span>
-                </router-link>
-            </li>
-            <li class="grade text-center">
-                <router-link :to="{name: 'Senior'}">
-                    <span>Senior</span>
-                </router-link>
-            </li>
-            <li class="grade text-center">
-                <router-link :to="{name: 'Lead'}">
-                    <span>Lead</span>
+        <ul class="m-0 p-0 list-unstyled d-flex">
+            <li v-for="grade in grades" :key="grade" class="grade text-center" @click="setSelectedGrade(grade)" :class="selectGrade == grade ? 'active' : ''">
+                <router-link :to="{name: grade}">
+                    <span>{{grade}}</span>
                 </router-link>
             </li>
         </ul>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 export default {
-    
+    data() {
+        return {
+            grades:['Intern','Junior','Middle','Senior','Lead'],
+            selectGrade:''
+        }
+    },
+    methods: {
+        setSelectedGrade(item){
+            this.selectGrade = item;
+        }
+    },
 }
 </script>
 
@@ -61,5 +52,9 @@ export default {
     }
     .grade span{
         color: white;
+    }
+    .active{
+        background: #5a0bd8;
+        border-color: #8fff62;
     }
 </style>
