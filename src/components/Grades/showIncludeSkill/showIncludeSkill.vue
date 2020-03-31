@@ -1,15 +1,15 @@
 <template>
-    <div class="junior d-flex justify-content-center align-items-center flex-column">
+    <div class="intern d-flex justify-content-center align-items-center flex-column">
         <h2>
+            {{this.$route.params.grade}}
         </h2>
         <ul class="m-0 p-0 list-unstyled d-flex">
-            <li v-for="skill in skills" :key="skill" class="juniorItem text-center" @click="setSelectedSkill(skill)" :class="selectSkill == skill ? 'active' : ''">
-                <router-link :to="{name: 'junior-'+skill}">
+            <li v-for="skill in skills" :key="skill" class="internItem text-center" @click="setSelectedSkill(skill)" :class="selectSkill == skill ? 'active' : ''">
+                <router-link :to="{name: 'skill',params:{skill:skill}}">
                     <span>{{skill}}</span>
                 </router-link>
             </li>
         </ul>
-        <router-view></router-view>
     </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang="css">
-    .juniorItem{
+    .internItem{
         background: #7045af;
         padding: 10px;
         width: 100px;
@@ -51,7 +51,7 @@ export default {
         border-top-right-radius: 0;
         border-bottom-left-radius: 0;
     }
-    .juniorItem span{
+    .internItem span{
         color: white;
     }
     .active{

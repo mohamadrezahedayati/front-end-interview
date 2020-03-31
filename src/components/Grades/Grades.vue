@@ -5,7 +5,7 @@
         </div>
         <ul class="m-0 p-0 list-unstyled d-flex">
             <li v-for="grade in grades" :key="grade" class="grade text-center" @click="setSelectedGrade(grade)" :class="selectGrade == grade ? 'active' : ''">
-                <router-link :to="{name: grade}">
+                <router-link :to="{name: 'grade' , params:{grade:grade}}">
                     <span>{{grade}}</span>
                 </router-link>
             </li>
@@ -15,12 +15,16 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return {
-            grades:['Intern','Junior','Middle','Senior','Lead'],
+            grades:['intern','junior','middle','senior','lead'],
             selectGrade:''
         }
+    },
+    components:{
+        
     },
     methods: {
         setSelectedGrade(item){
