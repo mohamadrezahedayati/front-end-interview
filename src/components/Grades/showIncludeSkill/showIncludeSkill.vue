@@ -1,5 +1,5 @@
 <template>
-    <div class="intern d-flex justify-content-center align-items-center flex-column">
+    <div class="intern d-flex justify-content-center align-items-center flex-column h-100">
         <h2>
             {{this.$route.params.grade}}
         </h2>

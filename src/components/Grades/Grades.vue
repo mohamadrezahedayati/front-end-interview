@@ -1,16 +1,21 @@
 <template>
-    <div class="grades d-flex justify-content-center align-items-center flex-column">
-        <div>
-            <h2>Front-end Interview</h2>
+    <div class="grades container-fluid d-flex justify-content-center align-items-center flex-column">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lx-10 col-xl-10">
+                <h2>Front-end Interview</h2>
+            </div>
         </div>
-        <ul class="m-0 p-0 list-unstyled d-flex">
-            <li v-for="grade in grades" :key="grade" class="grade text-center" @click="setSelectedGrade(grade)" :class="selectGrade == grade ? 'active' : ''">
-                <router-link :to="{name: 'grade' , params:{grade:grade}}">
-                    <span>{{grade}}</span>
-                </router-link>
-            </li>
-        </ul>
-        <router-view></router-view>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lx-10 col-xl-10">
+                <ul class="m-0 p-0 list-unstyled d-flex">
+                    <li v-for="grade in grades" :key="grade" class="grade text-center">
+                        <router-link :to="{name: 'grade' , params:{grade:grade}}">
+                            <span>{{grade}}</span>
+                        </router-link>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -56,9 +61,5 @@ export default {
     }
     .grade span{
         color: white;
-    }
-    .active{
-        background: #5a0bd8;
-        border-color: #8fff62;
     }
 </style>

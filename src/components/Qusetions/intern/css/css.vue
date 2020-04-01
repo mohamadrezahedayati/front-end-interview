@@ -2,7 +2,7 @@
     <div class="container-fluid h-100">
         <div class="row justify-content-center h-100 align-content-center">   
             <div class="col-sm-10 col-sm-offset-2 text-center">
-                <h2 class="mb-5">
+                <h2 class="mb-4">
                     {{this.$route.params.grade}} - {{this.$route.params.skill}}
                 </h2>
             </div>
@@ -13,56 +13,15 @@
                             <img src="https://cdn.dribbble.com/users/902865/screenshots/4814970/loading-opaque.gif" alt="Loading" class="center-block loanParamsLoader" style="">
                         </div>  
                     </div> -->
-                    <div id="question0" class="quiz">
+                    <div v-for="(question,index) in Questions" :key="question.index" class="quiz" v-show="qIsActive(index)">
                         <div class="question">
-                            <h3><span class="label label-warning" id="qid">1</span>
-                                <span id="question"> How can you add a single line comment in a JavaScript?</span>
+                            <h3><span class="label label-warning" id="qid">{{index + 1}}</span>
+                                <span id="question"> {{question.qTitle}}</span>
                             </h3>
                         </div>
-                        <ul>
-                            <li>
-                                <input type="radio" id="f-option" name="selector" value="1">
-                                <label for="f-option" class="element-animation">/*-- comment --*/</label>
-                                <div class="check"></div>
-                            </li>
-                            <li>
-                                <input type="radio" id="s-option" name="selector" value="2">
-                                <label for="s-option" class="element-animation">comment //</label>
-                                <div class="check">
-                                    <div class="inside"></div>
-                                </div>
-                            </li>
-                            <li>
-                                <input type="radio" id="t-option" name="selector" value="3">
-                                <label for="t-option" class="element-animation">comment [ ]</label>
-                                <div class="check">
-                                    <div class="inside"></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div id="question0" class="quiz">
-                        <div class="question">
-                            <h3><span class="label label-warning" id="qid">1</span>
-                                <span id="question"> How can you add a single line comment in a JavaScript?</span>
-                            </h3>
-                        </div>
-                        <ul>
-                            <li>
-                                <input type="radio" id="f-option" name="selector" value="1">
-                                <label for="f-option" class="element-animation">/*-- comment --*/</label>
-                                <div class="check"></div>
-                            </li>
-                            <li>
-                                <input type="radio" id="s-option" name="selector" value="2">
-                                <label for="s-option" class="element-animation">comment //</label>
-                                <div class="check">
-                                    <div class="inside"></div>
-                                </div>
-                            </li>
-                            <li>
-                                <input type="radio" id="t-option" name="selector" value="3">
-                                <label for="t-option" class="element-animation">comment [ ]</label>
+                        <ul class="list-unstyled">
+                            <li v-for="(option) in question.qOptions" :key="option.index" @click="checkAnswer(option,$event.target)">
+                                <label for="f-option" class="element-animation">{{option.optionText}}</label>
                                 <div class="check">
                                     <div class="inside"></div>
                                 </div>
@@ -72,6 +31,28 @@
                 </div>
                 <div class="text-muted">
                     <span id="answer"></span>
+                </div>
+            </div>
+            <div class="col-sm-10 col-sm-offset-2 text-center">
+                <div class="containerBtn d-flex align-items-center justify-content-between mt-3">
+                    <div>
+                        <button class="btn prev-btn text-white" @click="previousQusetion">previous</button>
+                    </div>
+                    <div class="showResult">
+                        <div class="d-flex">
+                            <div>
+                                <span>correct : </span>
+                                <span>{{this.AnswerGivenCorrectly}}</span>
+                            </div>
+                            <div class="ml-3">
+                                <span>incorrect : </span>
+                                <span>{{this.AnswerGivenInCorrectly}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn next-btn text-white" @click="nextQusetion">next</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,7 +79,77 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            qWichActive:0,
+            qTotal:10,
+            AnswerGivenCorrectly:0,
+            AnswerGivenInCorrectly:0,
+            Questions:[
+                {
+                    qNumber:0,
+                    qTitle:'How can you add a single line comment in a JavaScript?',
+                    qOptions:[
+                        {
+                            optionText:'/*-- comment --*/',
+                            answer:false
+                        },
+                        {
+                            optionText:'comment //',
+                            answer:true
+                        },
+                        {
+                            optionText:'comment [ ]',
+                            answer:false
+                        },
+                    ]
+                },
+                {
+                    qNumber:1,
+                    qTitle:'How can you add a single line comment in a JavaSdfbfnbtncript?',
+                    qOptions:[
+                        {
+                            optionText:'/*-- commedfngfnt --*/',
+                            answer:false
+                        },
+                        {
+                            optionText:'commngent //',
+                            answer:true
+                        },
+                        {
+                            optionText:'commnfent [ ]',
+                            answer:false
+                        },
+                    ]
+                },
+            ]
+        }
+    },
+    methods: {
+        qIsActive(questionNumber){
+            if(questionNumber == this.qWichActive)
+                return true
+            else
+                return false
+        },  
+        nextQusetion(){
+            this.qWichActive = this.qWichActive + 1;
+            console.log(this.qWichActive)
+        },
+        previousQusetion(){
+            this.qWichActive = this.qWichActive - 1;
+            console.log(this.qWichActive)
+        },
+        checkAnswer(option,element){
+            if(option.answer){
+                element.classList.add('correct')
+                this.AnswerGivenCorrectly = this.AnswerGivenCorrectly + 1
+            }else{
+                element.classList.add('incorrect')
+                this.AnswerGivenInCorrectly = this.AnswerGivenInCorrectly+1
+            }
+        },
+    },
 }
 </script>
 
@@ -320,11 +371,6 @@ export default {
         border-bottom: 1px solid #111111;
     }
 
-    ul li input[type=radio] {
-        position: absolute;
-        visibility: hidden;
-    }
-
     ul li label {
         display: block;
         position: relative;
@@ -374,19 +420,6 @@ export default {
         -webkit-transition: background 0.25s linear;
     }
 
-    input[type=radio]:checked~.check {
-        border: 5px solid #00FF00;
-    }
-
-    input[type=radio]:checked~.check::before {
-        background: #00FF00;
-        /*attr('data-background');*/
-    }
-
-    input[type=radio]:checked~label {
-        color: #00FF00;
-    }
-
     #result-of-question th {
         text-align: center;
         background: #75ba48;
@@ -428,12 +461,10 @@ export default {
         margin-left: -100px;
     }
 
-    /*----------riple bubble-----------------*/
     ul {
         margin: 0 auto;
     }
 
-    /*.ink styles - the elements which will create the ripple effect. The size and position of these elements will be set by the JS code. Initially these elements will be scaled down to 0% and later animated to large fading circles on user click.*/
     .ink {
         display: inline;
         position: absolute;
@@ -442,18 +473,32 @@ export default {
         transform: scale(0);
     }
 
-    /*animation effect*/
     .ink.animate {
         animation: ripple 0.65s linear;
     }
 
     @keyframes ripple {
 
-        /*scale the element to 250% to safely cover the entire link and fade it out*/
         100% {
             opacity: 0;
             transform: scale(2.5);
         }
+    }
+
+    .next-btn,.prev-btn{
+        background-color: #75ba48 !important;
+    }
+    
+    .incorrect{
+        background-color: red;
+    }
+    
+    .correct{
+        background-color: green;
+    }
+
+    .correct ul li .check::before{
+        background :black;
     }
 
 </style>
