@@ -16,7 +16,7 @@
                     <div v-for="(question,index) in Questions" :key="question.index" class="quiz" v-show="qIsActive(index)">
                         <div class="question">
                             <h3><span class="label label-warning" id="qid">{{index + 1}}</span>
-                                <span id="question"> {{question.qTitle}}</span>
+                                <span id="question" v-html="question.qTitle" class="ml-1"></span>
                             </h3>
                         </div>
                         <ul class="list-unstyled">
@@ -36,7 +36,7 @@
             <div class="col-sm-10 col-sm-offset-2 text-center">
                 <div class="containerBtn d-flex align-items-center justify-content-between mt-3">
                     <div>
-                        <!-- <button class="btn prev-btn text-white" @click="previousQusetion">previous</button> -->
+                        <button class="btn prev-btn text-white" @click="previousQusetion">previous</button>
                     </div>
                     <div class="showResult">
                         <div class="d-flex">
@@ -88,36 +88,102 @@ export default {
             Questions:[
                 {
                     qNumber:0,
-                    qTitle:'How can you add a single line comment in a JavaScript?',
+                    qTitle:"Which property is used to change the FONT COLOR of element's text?",
                     qOptions:[
                         {
-                            optionText:'/*-- comment --*/',
+                            optionText:"font-color",
                             answer:false
                         },
                         {
-                            optionText:'comment //',
+                            optionText:"text-color",
+                            answer:false
+                        },
+                        {
+                            optionText:"color",
                             answer:true
                         },
                         {
-                            optionText:'comment [ ]',
-                            answer:false
+                            optionText:"background-color",
+                            answer:false    
                         },
                     ]
                 },
                 {
                     qNumber:1,
-                    qTitle:'How can you add a single line comment in a JavaSdfbfnbtncript?',
+                    qTitle:"Is it allowed to use negative values for margin property ?",
                     qOptions:[
                         {
-                            optionText:'/*-- commedfngfnt --*/',
-                            answer:false
-                        },
-                        {
-                            optionText:'commngent //',
+                            optionText:"yes",
                             answer:true
                         },
                         {
-                            optionText:'commnfent [ ]',
+                            optionText:"no",
+                            answer:false
+                        },
+                    ]
+                },
+                {
+                    qNumber:2,
+                    qTitle:"<div>what is the value of left margin for the html element?</div> <img src='/img/css-intern.jpg' style='width: 230px;'> ",
+                    qOptions:[
+                        {
+                            optionText:"12px",
+                            answer:true
+                        },
+                        {
+                            optionText:"24px",
+                            answer:false
+                        },
+                        {
+                            optionText:"36px",
+                            answer:false
+                        },
+                        {
+                            optionText:"48px",
+                            answer:false
+                        },
+                    ]
+                },
+                {
+                    qNumber:3,
+                    qTitle:"what is the value of 1vh if the viewport is 1000px wide and 800px high ? ",
+                    qOptions:[
+                        {
+                            optionText:"8px",
+                            answer:true
+                        },
+                        {
+                            optionText:"100px",
+                            answer:false
+                        },
+                        {
+                            optionText:"80px",
+                            answer:false
+                        },
+                        {
+                            optionText:"10px",
+                            answer:false
+                        },
+                    ]
+                },
+                {
+                    qNumber:4,
+                    qTitle:"how to insert a comment in a css file ?",
+                    qOptions:[
+                        {
+                            optionText:"// comment //",
+                            answer:false
+                        },
+                        {
+                            optionText:">> comment <<",
+                            answer:false
+                        },
+                        {
+                            optionText:"/* comment */",
+                            answer:true
+                        },
+                        {
+                            optionText:"// comment ",
                             answer:false
                         },
                     ]
@@ -368,7 +434,7 @@ export default {
         position: relative;
         float: left;
         width: 100%;
-        height: 100px;
+        height: 70px;
         border-bottom: 1px solid #111111;
     }
 
@@ -377,8 +443,7 @@ export default {
         position: relative;
         font-weight: 300;
         font-size: 1.15em;
-        padding: 25px 25px 25px 80px;
-        margin: 10px auto;
+        padding: 20px 50px;
         height: auto;
         z-index: 9;
         cursor: pointer;
@@ -519,4 +584,7 @@ export default {
         font-size: 25px;
     }
 
+    .question #question {
+        font-size: 19px;
+    }
 </style>
