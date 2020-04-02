@@ -1,20 +1,14 @@
 <template>
-    <div class="grades container-fluid d-flex justify-content-center align-items-center flex-column">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lx-10 col-xl-10">
-                <h2>Front-end Interview</h2>
-            </div>
+    <div class="grades d-flex justify-content-center align-items-center flex-column">
+        <div class="">
+            <h2>Front-end Interview</h2>
         </div>
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lx-10 col-xl-10">
-                <ul class="m-0 p-0 list-unstyled d-flex">
-                    <li v-for="grade in grades" :key="grade" class="grade text-center">
-                        <router-link :to="{name: 'grade' , params:{grade:grade}}">
-                            <span>{{grade}}</span>
-                        </router-link>
-                    </li>
-                </ul>
-            </div>
+        <div class="">
+            <ul class="m-0 p-0 list-unstyled d-flex">
+                <router-link tag="li" v-for="grade in grades" :key="grade" class="grade text-center" :to="{name: 'grade' , params:{grade:grade}}">
+                    <span>{{grade}}</span>
+                </router-link>
+            </ul>
         </div>
     </div>
 </template>

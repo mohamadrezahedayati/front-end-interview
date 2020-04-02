@@ -4,11 +4,9 @@
             {{this.$route.params.grade}}
         </h2>
         <ul class="m-0 p-0 list-unstyled d-flex">
-            <li v-for="skill in skills" :key="skill" class="internItem text-center" @click="setSelectedSkill(skill)" :class="selectSkill == skill ? 'active' : ''">
-                <router-link :to="{name: 'skill',params:{skill:skill}}">
-                    <span>{{skill}}</span>
-                </router-link>
-            </li>
+            <router-link tag="li"  v-for="skill in skills" :key="skill" class="internItem text-center" :to="{name: 'skill',params:{skill:skill}}">
+                <span>{{skill}}</span>
+            </router-link>
         </ul>
     </div>
 </template>
@@ -18,15 +16,9 @@ export default {
     data() {
         return {
             skills:['html','css','javascript'],
-            selectSkill:''
         }
     },
     components:{
-    },
-    methods: {
-        setSelectedSkill(item){
-            this.selectSkill = item;
-        }
     },
     mounted() {
         console.log(this.$route)
@@ -53,9 +45,5 @@ export default {
     }
     .internItem span{
         color: white;
-    }
-    .active{
-        background: #5a0bd8;
-        border-color: #8fff62;
     }
 </style>

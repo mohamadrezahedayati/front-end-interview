@@ -36,7 +36,7 @@
             <div class="col-sm-10 col-sm-offset-2 text-center">
                 <div class="containerBtn d-flex align-items-center justify-content-between mt-3">
                     <div>
-                        <button class="btn prev-btn text-white" @click="previousQusetion">previous</button>
+                        <!-- <button class="btn prev-btn text-white" @click="previousQusetion">previous</button> -->
                     </div>
                     <div class="showResult">
                         <div class="d-flex">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn next-btn text-white" @click="nextQusetion">next</button>
+                        <!-- <button class="btn next-btn text-white" @click="nextQusetion">next</button> -->
                     </div>
                 </div>
             </div>
@@ -376,10 +376,10 @@ export default {
         display: block;
         position: relative;
         font-weight: 300;
-        font-size: 1.35em;
+        font-size: 1.15em;
         padding: 25px 25px 25px 80px;
         margin: 10px auto;
-        height: 30px;
+        height: auto;
         z-index: 9;
         cursor: pointer;
         -webkit-transition: all 0.25s linear;
@@ -394,10 +394,11 @@ export default {
         position: absolute;
         border: 5px solid #AAAAAA;
         border-radius: 100%;
-        height: 30px;
-        width: 30px;
-        top: 30px;
+        height: 38px;
+        width: 38px;
+        top: 50%;
         left: 20px;
+        transform: translate(-50%, -50%);
         z-index: 5;
         transition: border .25s linear;
         -webkit-transition: border .25s linear;
@@ -414,7 +415,7 @@ export default {
         border-radius: 100%;
         height: 14px;
         width: 14px;
-        top: 3.2px;
+        top: -5.8px;
         left: 3.2px;
         margin: auto;
         transition: background 0.25s linear;
@@ -491,15 +492,31 @@ export default {
     }
     
     .incorrect{
-        background-color: red;
+        color: #c73232 !important;
     }
     
     .correct{
-        background-color: green;
+        color: #2ebd2e !important;
     }
 
-    .correct ul li .check::before{
-        background :black;
+    .correct + .check{
+        border-color:#2ebd2e !important;
+    }
+
+    .correct + .check::before{
+        content: "✓";
+        color: #2ebd2e !important;
+        font-size: 25px;
+    }
+
+    .incorrect + .check{
+        border-color: #c73232 !important;
+    }
+
+    .incorrect + .check::before{
+        content: "✗";
+        color: #c73232 !important;
+        font-size: 25px;
     }
 
 </style>
