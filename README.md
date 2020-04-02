@@ -1,4 +1,4 @@
-# interview
+# front-end-interview
 
 ## Project setup
 ```
