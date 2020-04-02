@@ -134,11 +134,9 @@ export default {
         },  
         nextQusetion(){
             this.qWichActive = this.qWichActive + 1;
-            console.log(this.qWichActive)
         },
         previousQusetion(){
             this.qWichActive = this.qWichActive - 1;
-            console.log(this.qWichActive)
         },
         checkAnswer(option,element){
             if(option.answer){
@@ -148,6 +146,9 @@ export default {
                 element.classList.add('incorrect')
                 this.AnswerGivenInCorrectly = this.AnswerGivenInCorrectly+1
             }
+            setTimeout(() => {
+                this.nextQusetion();
+            }, 1200);
         },
     },
 }
