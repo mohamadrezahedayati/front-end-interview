@@ -1,7 +1,7 @@
 <template>
     <div class="grades d-flex justify-content-center align-items-center flex-column">
         <div class="">
-            <h2>Front-end Interview</h2>
+            <h2 style="filter: brightness(1);">Front-end Interview</h2>
         </div>
         <div class="">
             <ul class="m-0 p-0 list-unstyled d-flex">
