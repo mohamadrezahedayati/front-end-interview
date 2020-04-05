@@ -9,11 +9,13 @@ export const routes = [
     {
         name:'grade',
         path:'/:grade',
-        component:showIncludeSkill
+        component:showIncludeSkill,
+        props:true
     },
     {
         name:'skill',
         path:'/:grade/:skill',
-        component: showQustion
+        component: showQustion,
+        props:true
     },
 ];

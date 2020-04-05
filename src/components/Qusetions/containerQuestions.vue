@@ -1,6 +1,6 @@
 <template>
     <div class="containerQuestions">
-        <component :is="this.$route.params.grade+'_'+this.$route.params.skill"></component>
+        <component :is="grade+'_'+skill"></component>
     </div>
 </template>
 <script>
@@ -85,6 +85,7 @@ export default {
             }
         }
     },
+    props:['skill','grade'],
     components:{
         intern_html,
         intern_css,

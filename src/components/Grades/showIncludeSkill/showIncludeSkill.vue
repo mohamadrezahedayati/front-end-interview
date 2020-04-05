@@ -1,7 +1,7 @@
 <template>
     <div class="intern d-flex justify-content-center align-items-center flex-column h-100">
         <h2>
-            {{this.$route.params.grade}}
+            {{grade}}
         </h2>
         <ul class="m-0 p-0 list-unstyled d-flex">
             <router-link tag="li"  v-for="skill in skills" :key="skill" class="internItem text-center" :to="{name: 'skill',params:{skill:skill}}">
@@ -18,6 +18,7 @@ export default {
             skills:['html','css','javascript'],
         }
     },
+    props:['grade'],
     components:{
     },
     mounted() {

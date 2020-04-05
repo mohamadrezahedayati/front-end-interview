@@ -36,7 +36,7 @@
             <div class="col-sm-10 col-sm-offset-2 text-center">
                 <div class="containerBtn d-flex align-items-center justify-content-between mt-3">
                     <div>
-                        <button class="btn prev-btn text-white" @click="previousQusetion">previous</button>
+                        <!-- <button class="btn prev-btn text-white" @click="previousQusetion">previous</button> -->
                     </div>
                     <div class="showResult">
                         <div class="d-flex">
